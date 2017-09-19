@@ -4,7 +4,7 @@
 ### １ピンの色変えて保存
 投稿画面
 
-```swift
+```swift:
 
 class ViewController2{
 
@@ -22,25 +22,27 @@ class ViewController2{
 				mapAnnotationView.pinTintColor = UIColor.blue
 			}
 		}
+	}
 
-		func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 
-			let pinView = MKPinAnnotationView()
-			if ( dataSwitch.isOn ) {
-				//testLabel.text = "行った"
-				pinView.pinTintColor = UIColor.green
-				} else {
-					//testLabel.text = "これから"
-					pinView.pinTintColor = UIColor.blue
-				}
-
-				mapAnnotationView = pinView
-
-				return mapAnnotationView
+		let pinView = MKPinAnnotationView()
+		if ( dataSwitch.isOn ) {
+			//testLabel.text = "行った"
+			pinView.pinTintColor = UIColor.green
+			} else {
+				//testLabel.text = "これから"
+				pinView.pinTintColor = UIColor.blue
 			}
 
+			mapAnnotationView = pinView
 
+			return mapAnnotationView
 		}
+
+
+	}
+
 
 ```
 
