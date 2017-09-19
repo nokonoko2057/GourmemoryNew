@@ -1,10 +1,10 @@
-#変えるとこ
+# 変えるとこ
 変更するとこをメソッドごとに書いてる。メソッドの中をそれぞれ確認して書き換えるor書き足すこと。
 
-###１ピンの色変えて保存
+### １ピンの色変えて保存
 投稿画面
 
-```swift:
+```Swift:
 
 class ViewController2{
 
@@ -44,10 +44,10 @@ class ViewController2{
 
 ```
 
-###２キーボード最初から出すのやめる
+### ２キーボード最初から出すのやめる
 投稿画面
 
-```swift:
+```Swift:
 
 class ViewController2{
 	func viewDidLoad(){
@@ -57,10 +57,10 @@ class ViewController2{
 
 ```
 
-###３ピンタップしたらセルに飛ぶ
+### ３ピンタップしたらセルに飛ぶ
 これはmapの方ね
 
-```swift:
+```Swift:
 
 class ViewController{
 	override func viewDidLoad() {
@@ -77,10 +77,10 @@ class ViewController{
 
 ```
 
-###４絵文字３つまでに制限する
+### ４絵文字３つまでに制限する
 投稿画面
 
-```swift:
+```Swift:
 class ViewController2{
 	func backSpaceButtonImage(for emojiKeyboardView: AGEmojiKeyboardView!) -> UIImage! {
 		return "🔙".image()
@@ -109,5 +109,5 @@ class ViewController2{
 
 ```
 
-###５セルの中のレイアウトとデザイン改良する
+### ５セルの中のレイアウトとデザイン改良する
 がんば！
