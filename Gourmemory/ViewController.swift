@@ -27,6 +27,9 @@ class ViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelega
     
     var testManager:CLLocationManager = CLLocationManager()
     
+    
+//    var mapAnnotationView:MKPinAnnotationView = MKPinAnnotationView()
+    
     override func viewDidLoad() {
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: 0x6AB9BE)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -34,6 +37,7 @@ class ViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelega
         
         let region = MKCoordinateRegionMake(coordiate, span)
         mapView.setRegion(region, animated: true)
+        mapView.delegate = self
         
         readKiwamiData()
         
@@ -43,6 +47,11 @@ class ViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelega
         testManager.startUpdatingLocation()
         testManager.requestWhenInUseAuthorization()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        readKiwamiData()
+        mapView.reloadInputViews()
     }
     
     
@@ -176,5 +185,14 @@ class ViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDelega
         }
         
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("select!!:\(view.annotation?.title)")
+        
+    }
+    
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        let 
+//    }
     
 }

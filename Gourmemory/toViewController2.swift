@@ -53,17 +53,19 @@ class ViewController2 : UIViewController ,MKMapViewDelegate,CLLocationManagerDel
     var testManager:CLLocationManager = CLLocationManager()
     
     
+    var mapAnnotationView:MKPinAnnotationView = MKPinAnnotationView()
+    
+    
     @IBAction func testUISwitch(sender: UISwitch) {
         
         print("changeSwitch")
-        mapView.reloadInputViews()
-        
+  
         if ( sender.isOn ) {
             //testLabel.text = "行った"
-            //mapView.reloadInputViews()
+            mapAnnotationView.pinTintColor = UIColor.green
         } else {
             //testLabel.text = "これから"
-            //annotaion.pinColor = UIColor.redColor()
+            mapAnnotationView.pinTintColor = UIColor.blue
         }
     }
     
@@ -81,7 +83,7 @@ class ViewController2 : UIViewController ,MKMapViewDelegate,CLLocationManagerDel
         
         
         self.textfield.inputView = emojiKeyboard
-        self.textfield.becomeFirstResponder()
+//        self.textfield.becomeFirstResponder()
         
         
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: 0x6AB9BE)
@@ -172,18 +174,26 @@ class ViewController2 : UIViewController ,MKMapViewDelegate,CLLocationManagerDel
     }
     
     func backSpaceButtonImage(for emojiKeyboardView: AGEmojiKeyboardView!) -> UIImage! {
-        return UIImage()
+        return "🔙".image()
     }
     
     
     //MARK: - AGEmojiKeyboardViewDelegate
     //キーボードの動きを見るところ。ここでtextfieldとかに文字を入れる
     func emojiKeyBoardView(_ emojiKeyBoardView: AGEmojiKeyboardView!, didUseEmoji emoji: String!) {
-        self.textfield.text = emoji
+        if (textfield.text?.characters.count)! <= 2{
+            self.textfield.text?.append(emoji)
+        }
+        
     }
     
     //ここも必ずかくこと。空っぽでもこのメソッドないとエラーでる
     func emojiKeyBoardViewDidPressBackSpace(_ emojiKeyBoardView: AGEmojiKeyboardView!) {
+        if (textfield.text?.characters.count)! >= 1{
+            var str:String = self.textfield.text!
+            str = str.substring(to: str.index(before: str.endIndex))
+            self.textfield.text = str
+        }
         
     }
     
@@ -435,18 +445,20 @@ class ViewController2 : UIViewController ,MKMapViewDelegate,CLLocationManagerDel
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        print("mapView delegate!!")
         let pinView = MKPinAnnotationView()
-        if dataSwitch.isOn == true{
-            //行った
+        if ( dataSwitch.isOn ) {
+            //testLabel.text = "行った"
             pinView.pinTintColor = UIColor.green
-        }else{
+        } else {
+            //testLabel.text = "これから"
             pinView.pinTintColor = UIColor.blue
         }
+
+        mapAnnotationView = pinView
         
-        return pinView
-        
+        return mapAnnotationView
     }
+    
     
 }
 
